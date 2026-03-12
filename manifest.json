@@ -1,7 +1,7 @@
 {
   "name": "BusDuty Tracker",
   "short_name": "BusDuty",
-  "start_url": "/index.html",
+  "start_url": "/BusDuty-Tracker-V1/",
   "display": "standalone",
   "background_color": "#0f172a",
   "theme_color": "#1e40af",
