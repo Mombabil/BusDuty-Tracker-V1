@@ -1,0 +1,74 @@
+@import url('https://fonts.googleapis.com/css2?family=Orbitron:wght@500;700&family=Rajdhani:wght@500;600&family=Inter:wght@400;500&display=swap');
+
+
+/* ---------- BACKGROUND ---------- */
+
+$bg-main: hsl(235, 78%, 13%);
+$bg-secondary: hsl(234, 72%, 22%);
+$bg-panel: hsl(235, 62%, 33%);
+
+/* ---------- TEXT ---------- */
+
+$text-main: hsl(0, 0%, 100%);
+$text-secondary: hsl(210, 30%, 85%);
+$text-muted: hsl(210, 20%, 65%);
+
+/* ---------- BORDER / UI ---------- */
+
+$border-soft: hsl(235, 40%, 45%);
+$border-glow: hsl(210, 80%, 60%);
+
+/* ---------- ACTION COLORS ---------- */
+
+/* prise de service */
+$service: hsl(109, 71%, 38%);
+$service-light: hsl(109, 71%, 48%);
+$service-dark: hsl(109, 71%, 28%);
+
+/* conduite */
+$drive: hsl(208, 77%, 51%);
+$drive-light: hsl(208, 77%, 60%);
+$drive-dark: hsl(208, 77%, 40%);
+
+/* attente */
+$waiting: hsl(46, 91%, 50%);
+$waiting-light: hsl(46, 91%, 60%);
+$waiting-dark: hsl(46, 91%, 40%);
+
+/* repos */
+$rest: hsl(270, 60%, 55%);
+$rest-light: hsl(270, 60%, 65%);
+$rest-dark: hsl(270, 60%, 45%);
+
+/* fin de journée */
+$finish: hsl(12, 71%, 46%);
+$finish-light: hsl(12, 71%, 56%);
+$finish-dark: hsl(12, 71%, 36%);
+
+/* ---------- STATS COLORS ---------- */
+
+$stat-drive: hsl(208, 77%, 51%);
+$stat-wait: hsl(46, 91%, 50%);
+$stat-rest: hsl(270, 60%, 55%);
+$stat-amplitude: hsl(12, 71%, 46%);
+
+/* ---------- EFFECTS ---------- */
+
+$glow-blue: hsl(208, 100%, 65%);
+$glow-green: hsl(109, 80%, 55%);
+$glow-yellow: hsl(46, 100%, 60%);
+
+
+body{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin: 0;
+    background: rgb(36, 36, 36);
+    h3, button{
+        font-family: "Orbitron", sans-serif;
+    }
+    p, ul{
+        font-family: "Inter", sans-serif;
+    }
+}
