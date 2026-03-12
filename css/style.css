@@ -26,7 +26,7 @@ body p, body ul {
 }
 
 .container {
-  max-width: 375px;
+  max-width: 500px;
   width: 100%;
   background: hsl(235, 78%, 13%);
   position: relative;
@@ -227,7 +227,7 @@ body p, body ul {
 .container footer {
   position: fixed;
   bottom: 0;
-  max-width: 375px;
+  max-width: 500px;
   width: 100%;
   border-top: 4px solid hsl(235, 40%, 45%);
   padding-top: 8px;
