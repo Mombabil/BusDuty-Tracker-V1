@@ -203,4 +203,4 @@ finish.addEventListener("click", () => {
 currentDate.textContent = displayDate();
 render();
 
-console.log("*Initialise to main");
+console.log("*Initialise");
