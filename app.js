@@ -202,3 +202,5 @@ finish.addEventListener("click", () => {
 // INITIALISE APP
 currentDate.textContent = displayDate();
 render();
+
+console.log("*Initialise");
