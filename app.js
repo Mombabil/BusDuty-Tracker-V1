@@ -17,10 +17,17 @@ const currentlyWorked = document.querySelector(".currentlyWorked");
 // btn start
 const start = document.querySelector(".start");
 // btn drive
+const drive = document.querySelector(".drive");
 // btn waiting
+const waiting = document.querySelector(".waiting");
 // btn rest
+const rest = document.querySelector(".rest");
 // btn finish
 const finish = document.querySelector(".finish");
+// tableau de btn
+const buttons = [drive, waiting, rest, finish];
+// message fin de journée
+const endOfDayMsg = document.querySelector(".endOfDay");
 
 // initialisation du state
 let state = JSON.parse(localStorage.getItem("busTrackerState")) || [];
@@ -62,7 +69,7 @@ const startOfDay = () => {
     week: getCurrentWeek(today),
   };
 
-  // une fois l'objet du jour créer, on ne peut plus cliquer sur le bouton jusqu'au lendemain
+  // une fois l'objet du jour créer, on ne peut plus cliquer sur le btn jusqu'au lendemain, mais les autres btn deviennent activés
   start.disabled = true;
   start.classList.add("disabled");
 
@@ -74,6 +81,30 @@ const startOfDay = () => {
 
   // on fait appel a render() pour actualiser l'affichage
   render();
+};
+
+// par default, seul le btn prise de service est activé
+const defaultButtons = () => {
+  // le bouton start est activé
+  start.disabled = false;
+  start.classList.remove("disabled");
+  // tout les autres sont desactivés
+  buttons.forEach((btn) => {
+    btn.disabled = true;
+    btn.classList.add("disabled");
+  });
+};
+
+// quand la journée est commencé, on désactive btn start, et on active les autres btns
+const whenDayIsStartedButtons = () => {
+  // le bouton start est désactivé
+  start.disabled = true;
+  start.classList.add("disabled");
+  // tout les autres sont desactivés
+  buttons.forEach((btn) => {
+    btn.disabled = false;
+    btn.classList.remove("disabled");
+  });
 };
 
 // renvoi l'heure/minutes/secondes a laquelle on a cliqué sur "Prise de Service" (représente le début de la journée de travail)
@@ -155,17 +186,22 @@ const getCurrentWeek = (date) => {
 
 // RENDER
 const render = () => {
+  // par default, seul le btn prise de service est activé
+  defaultButtons();
+
+  // on verifie si il y a une journée en cours
   state.forEach((st) => {
-    // si il y a une journée en cours
     if (!st.isFinished) {
       startTime.textContent = st.start;
 
+      whenDayIsStartedButtons();
+
+      // si oui, le chronometre se lance pour calculer l'amplitude de la journée
       if (!chronoInterval) {
         chronoInterval = setInterval(() => {
           updateChrono(getStartOfDay(st.start));
         }, 1000);
       }
-
       updateChrono(getStartOfDay(st.start));
     } else {
       // on met fin au chronometre
@@ -176,8 +212,15 @@ const render = () => {
       currentlyWorked.textContent = "00:00:00";
 
       // on réactive le btn "Prise de service" et on lui rend sa couleur
-      start.disabled = false;
-      start.classList.remove("disabled");
+      defaultButtons();
+    }
+
+    // si une journée du state est la même que la date du jour et que la journée est isFinished, on désactive tout les btns jusqu'a la journée suivante (pour ne pas créer deux services dans la même journée)
+    const today = new Date();
+    if (st.date === today.toLocaleDateString("fr-FR") && st.isFinished) {
+      start.disabled = true;
+      start.classList.add("disabled");
+      endOfDayMsg.classList.add("showEndOfDay");
     }
   });
 };
@@ -202,5 +245,3 @@ finish.addEventListener("click", () => {
 // INITIALISE APP
 currentDate.textContent = displayDate();
 render();
-
-console.log("*Initialise");

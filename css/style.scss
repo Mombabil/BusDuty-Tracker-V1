@@ -159,30 +159,65 @@
             }
             &:nth-child(2){
                 background: $drive;
+                &.disabled{
+                    background: $text-muted;
+                    &:hover{
+                        background: $text-muted;
+                    }
+                }
                 &:hover{
                     background: $drive-light;
                 }
             }
             &:nth-child(3){
                 background: $waiting;
+                &.disabled{
+                    background: $text-muted;
+                    &:hover{
+                        background: $text-muted;
+                    }
+                }
                 &:hover{
                     background: $waiting-light;
                 }
             }
             &:nth-child(4){
                 background: $rest;
+                &.disabled{
+                    background: $text-muted;
+                    &:hover{
+                        background: $text-muted;
+                    }
+                }
                 &:hover{
                     background: $rest-light;
                 }
             }
             &:nth-child(5){
                 background: $finish;
+                &.disabled{
+                    background: $text-muted;
+                    &:hover{
+                        background: $text-muted;
+                    }
+                }
                 &:hover{
                     background: $finish-light;
                 }
             }
         }
-        
+        .endOfDay{
+            text-align: center;
+            margin: 0;
+            color: $glow-yellow;
+            font-family: "Orbitron", sans-serif;
+            height: 0;
+            overflow: hidden;
+        }
+        .showEndOfDay{
+            height: 20px;
+            transition: height 0.4s ease-in-out;
+        }
     }
 
     // DAY JOURNAL

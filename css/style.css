@@ -176,11 +176,23 @@ body p, body ul {
 .container .btnActivities button:nth-child(2) {
   background: hsl(208, 77%, 51%);
 }
+.container .btnActivities button:nth-child(2).disabled {
+  background: hsl(210, 20%, 65%);
+}
+.container .btnActivities button:nth-child(2).disabled:hover {
+  background: hsl(210, 20%, 65%);
+}
 .container .btnActivities button:nth-child(2):hover {
   background: hsl(208, 77%, 60%);
 }
 .container .btnActivities button:nth-child(3) {
   background: hsl(46, 91%, 50%);
+}
+.container .btnActivities button:nth-child(3).disabled {
+  background: hsl(210, 20%, 65%);
+}
+.container .btnActivities button:nth-child(3).disabled:hover {
+  background: hsl(210, 20%, 65%);
 }
 .container .btnActivities button:nth-child(3):hover {
   background: hsl(46, 91%, 60%);
@@ -188,14 +200,38 @@ body p, body ul {
 .container .btnActivities button:nth-child(4) {
   background: hsl(270, 60%, 55%);
 }
+.container .btnActivities button:nth-child(4).disabled {
+  background: hsl(210, 20%, 65%);
+}
+.container .btnActivities button:nth-child(4).disabled:hover {
+  background: hsl(210, 20%, 65%);
+}
 .container .btnActivities button:nth-child(4):hover {
   background: hsl(270, 60%, 65%);
 }
 .container .btnActivities button:nth-child(5) {
   background: hsl(12, 71%, 46%);
 }
+.container .btnActivities button:nth-child(5).disabled {
+  background: hsl(210, 20%, 65%);
+}
+.container .btnActivities button:nth-child(5).disabled:hover {
+  background: hsl(210, 20%, 65%);
+}
 .container .btnActivities button:nth-child(5):hover {
   background: hsl(12, 71%, 56%);
+}
+.container .btnActivities .endOfDay {
+  text-align: center;
+  margin: 0;
+  color: hsl(46, 100%, 60%);
+  font-family: "Orbitron", sans-serif;
+  height: 0;
+  overflow: hidden;
+}
+.container .btnActivities .showEndOfDay {
+  height: 20px;
+  transition: height 0.4s ease-in-out;
 }
 .container .dayJournal {
   padding: 8px;
