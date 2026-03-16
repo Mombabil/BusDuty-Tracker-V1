@@ -86,7 +86,7 @@ body p, body ul {
   text-align: center;
   background: hsl(234, 72%, 22%);
   color: hsl(0, 0%, 100%);
-  font-size: 1.4em;
+  font-size: 1.3em;
   padding: 8px 0;
   width: 100%;
   align-self: center;
@@ -265,6 +265,13 @@ body p, body ul {
 }
 .container .dayJournal ul li {
   color: hsl(0, 0%, 100%);
+  display: flex;
+  justify-content: space-evenly;
+  align-items: center;
+  font-size: 1em;
+}
+.container .dayJournal ul li .hours {
+  align-self: flex-start;
 }
 .container footer {
   position: fixed;

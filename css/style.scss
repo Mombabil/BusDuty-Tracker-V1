@@ -62,7 +62,7 @@
                 text-align: center;
                 background: $bg-secondary;
                 color: $text-main;
-                font-size: 1.4em;
+                font-size: 1.3em;
                 padding: 8px 0;
                 width: 100%;
                 align-self: center;
@@ -251,6 +251,13 @@
             padding-left: 24px;
             li{
                 color: $text-main;
+                display: flex;
+                justify-content: space-evenly;
+                align-items: center;
+                font-size: 1em;
+                .hours{
+                    align-self: flex-start;
+                }
             }
         }
     }
