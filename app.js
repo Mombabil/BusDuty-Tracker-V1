@@ -241,7 +241,7 @@ const toMinutes = (time) => {
 const toHHMM = (minutes) => {
   const h = Math.floor(minutes / 60);
   const m = minutes % 60;
-  return `${pad(h)}:${pad(m)}`;
+  return `${pad(h)}h${pad(m)}m`;
 };
 const getTotalsByType = (datas) => {
   const totals = {};
