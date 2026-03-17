@@ -433,7 +433,7 @@ start.addEventListener("click", () => {
 });
 // btn drive
 drive.addEventListener("click", () => {
-  calcDuration("drive", "WRK", "Reprise conduite/travail");
+  calcDuration("drive", "TRA", "Reprise conduite/travail");
 });
 // btn waiting
 waiting.addEventListener("click", () => {
