@@ -30,6 +30,8 @@ const buttons = [drive, waiting, rest, finish];
 const endOfDayMsg = document.querySelector(".endOfDay");
 // journal de la journée
 const listOfActivitites = document.querySelector(".listOfActivities");
+// resumé de la journée
+const resumeOfActivities = document.querySelector(".resumeOfActivities");
 
 // initialisation du state
 let state = JSON.parse(localStorage.getItem("busTrackerState")) || [];
@@ -56,42 +58,53 @@ const displayDate = () => {
   return todayToLocaleStr;
 };
 
-const calcDuration = () => {
-  state.forEach((st) => {
-    if (!st.isFinished) {
-      st.datas.forEach((data) => {
-        if (!data.isFinished) {
-          const start = data.start;
+const calcDuration = (currentStatut, type, detail) => {
+  const activeDay = state.find((st) => !st.isFinished);
+  if (!activeDay) {
+    return;
+  }
 
-          data.end = getTime();
-          const end = data.end;
-          // on convertit les chaines de charactère de start et end en tableau, et on les passe au format Number
-          const [startH, startM, startS] = start.split(":").map(Number);
-          const [endH, endM, endS] = end.split(":").map(Number);
+  // on calcule la durée de l'activité qui vient de se terminer
+  activeDay.datas.forEach((data) => {
+    if (!data.isFinished) {
+      const start = data.start;
+      data.end = getTime();
+      const end = data.end;
 
-          // on convertit le total heures et minutes en minutes totales depuis minuit (on ignore les secondes dans cette fonction)
-          let startMinutes = startH * 60 + startM;
-          let endMinutes = endH * 60 + endM;
+      // on convertit les chaines de charactère de start et end en tableau, et on les passe au format Number
+      const [startH, startM, startS] = start.split(":").map(Number);
+      const [endH, endM, endS] = end.split(":").map(Number);
 
-          const diffMinutes = endMinutes - startMinutes;
-          const hours = Math.floor(diffMinutes / 60);
-          const minutes = diffMinutes % 60;
+      // on convertit le total heures et minutes en minutes totales depuis minuit (on ignore les secondes dans cette fonction)
+      let startMinutes = startH * 60 + startM;
+      let endMinutes = endH * 60 + endM;
 
-          data.duration = `${hours}:${minutes}`;
-          data.isFinished = true;
-        }
-      });
+      const diffMinutes = endMinutes - startMinutes;
+      const hours = Math.floor(diffMinutes / 60);
+      const minutes = diffMinutes % 60;
+
+      data.duration = `${pad(hours)}:${pad(minutes)}`;
+      data.isFinished = true;
     }
-    st.currentStatut = "waiting";
-    st.datas.push({
-      type: "Attente",
+  });
+
+  if (
+    currentStatut != "finish" &&
+    type != "FNS" &&
+    detail != "Fin de journée"
+  ) {
+    // on crée une nouvelle activité selon le bouton sur lequel on a cliqué
+    activeDay.currentStatut = currentStatut;
+    activeDay.datas.push({
+      type: type,
       start: getTime(),
       end: "",
       duration: "",
       isFinished: false,
-      detail: "Attente sur place",
+      detail: detail,
     });
-  });
+  }
+
   saveState();
   render();
 };
@@ -103,6 +116,7 @@ const startOfDay = () => {
   const workDay = {
     date: today.toLocaleDateString("fr-FR"),
     start: getTime(),
+    drive: "",
     waiting: "",
     rest: "",
     finish: "",
@@ -206,12 +220,50 @@ const endOfDay = (finish) => {
   finish.amplitude = currentlyWorked.textContent;
   finish.finish = getTime();
   finish.isFinished = true;
+  finish.currentStatut = "finish";
+
+  const totals = getTotalsByType(finish.datas);
+
+  finish.totals = totals;
 
   // on envoi le nouveau state au localStorage
   saveState();
 
   // on fait appel a render() pour actualiser l'affichage
   render();
+};
+
+// triple fonctions pour calculer le total des activités de la journée
+const toMinutes = (time) => {
+  const [h, m] = time.split(":").map(Number);
+  return h * 60 + m;
+};
+const toHHMM = (minutes) => {
+  const h = Math.floor(minutes / 60);
+  const m = minutes % 60;
+  return `${pad(h)}:${pad(m)}`;
+};
+const getTotalsByType = (datas) => {
+  const totals = {};
+
+  datas.forEach((data) => {
+    if (!data.duration) return;
+
+    const minutes = toMinutes(data.duration);
+
+    if (!totals[data.type]) {
+      totals[data.type] = 0;
+    }
+
+    totals[data.type] += minutes;
+  });
+
+  // conversion finale en HH:MM
+  Object.keys(totals).forEach((type) => {
+    totals[type] = toHHMM(totals[type]);
+  });
+
+  return totals;
 };
 
 // transforme la chaine de caractère de state.start en tableau
@@ -261,33 +313,75 @@ const render = () => {
   // par default, seul le btn prise de service est activé
   defaultButtons();
 
+  // AMELIORATION POSSIBLE POUR REMPLACER state.forEach(())
+  const activeDay = state.find((day) => !day.isFinished)
+    ? state.find((day) => !day.isFinished)
+    : "Pas de journée active";
+
   // on verifie si il y a une journée en cours
+  if (activeDay === state.find((day) => !day.isFinished)) {
+    startTime.textContent = activeDay.start;
+
+    // on change l'état des boutons selon le type d'activité en cours
+    switch (activeDay.currentStatut) {
+      case "drive":
+        whenDayIsStartedButtons();
+        break;
+      case "waiting":
+        whenWeAreWaiting();
+        break;
+      case "rest":
+        whenWeAreWaiting();
+        break;
+      default:
+        break;
+    }
+
+    // si oui, le chronometre se lance pour calculer l'amplitude de la journée
+    if (!chronoInterval) {
+      chronoInterval = setInterval(() => {
+        updateChrono(getStartOfDay(activeDay.start));
+      }, 1000);
+    }
+    updateChrono(getStartOfDay(activeDay.start));
+
+    // on affiche le journal d'activité de la journée en cours
+    listOfActivitites.innerHTML = "";
+    let html = "";
+
+    activeDay.datas.forEach((data) => {
+      html += `
+          <li>
+            <span class="hours">${data.start} : </span>
+            <div class="displayDetails">
+              <span class="detail"> ${data.detail} </span>
+              <span class="title"> ${data.type}</span>
+            </div>
+          </li>
+        `;
+    });
+
+    listOfActivitites.innerHTML = html;
+    // sinon
+  } else {
+    // on met fin au chronometre
+    clearInterval(chronoInterval);
+
+    // reinitialisation de startTime et currentlyWorked
+    startTime.textContent = "00:00:00";
+    currentlyWorked.textContent = "00:00:00";
+
+    // on réactive le btn "Prise de service" et on lui rend sa couleur
+    defaultButtons();
+  }
+
+  // si la journée est terminée, on désactive tout les btns jusqu'a la journée suivante (pour ne pas créer deux services dans la même journée)
+  const today = new Date();
   state.forEach((st) => {
-    if (!st.isFinished) {
-      startTime.textContent = st.start;
-
-      // on change l'état des boutons selon le type d'activité en cours
-      switch (st.currentStatut) {
-        case "drive":
-          whenDayIsStartedButtons();
-          break;
-        case "waiting":
-          whenWeAreWaiting();
-          break;
-        case "rest":
-          whenWeAreWaiting();
-          break;
-        default:
-          break;
-      }
-
-      // si oui, le chronometre se lance pour calculer l'amplitude de la journée
-      if (!chronoInterval) {
-        chronoInterval = setInterval(() => {
-          updateChrono(getStartOfDay(st.start));
-        }, 1000);
-      }
-      updateChrono(getStartOfDay(st.start));
+    if (st.date === today.toLocaleDateString("fr-FR") && st.isFinished) {
+      start.disabled = true;
+      start.classList.add("disabled");
+      endOfDayMsg.classList.add("showEndOfDay");
 
       // on affiche le journal d'activité de la journée en cours
       listOfActivitites.innerHTML = "";
@@ -296,33 +390,37 @@ const render = () => {
       st.datas.forEach((data) => {
         html += `
           <li>
-            <span class="hours">${data.start}</span>
-            <span class="detail">: ${data.detail}</span>
-            <span class="title"> - ${data.type}</span>
+            <span class="hours">${data.start} : </span>
+            <div class="displayDetails">
+              <span class="detail"> ${data.detail} </span>
+              <span class="title"> ${data.type}</span>
+            </div>
           </li>
         `;
       });
-
       listOfActivitites.innerHTML = html;
-      // sinon
-    } else {
-      // on met fin au chronometre
-      clearInterval(chronoInterval);
 
-      // reinitialisation de startTime et currentlyWorked
-      startTime.textContent = "00:00:00";
-      currentlyWorked.textContent = "00:00:00";
-
-      // on réactive le btn "Prise de service" et on lui rend sa couleur
-      defaultButtons();
-    }
-
-    // si une journée du state est la même que la date du jour et que la journée est isFinished, on désactive tout les btns jusqu'a la journée suivante (pour ne pas créer deux services dans la même journée)
-    const today = new Date();
-    if (st.date === today.toLocaleDateString("fr-FR") && st.isFinished) {
-      start.disabled = true;
-      start.classList.add("disabled");
-      endOfDayMsg.classList.add("showEndOfDay");
+      resumeOfActivities.innerHTML += `
+        <li>
+          <span class="hours">${st.finish} :</span>
+          <span class="detail"> FIN DE JOURNEE </span>
+        </li>
+        <li>
+          <span>TTE</span>
+          <span>${st.totals.TTE + " + " + st.totals.PAU}</span>
+        </li>
+        <li>
+          <span>Travail</span>
+          <span>${st.totals.TTE}</span>
+        </li>
+        <li>
+          <span>Pause</span>
+          <span>${st.totals.PAU}</span>
+        </li>
+        <li>
+          <span>Amplitude</span>
+          <span>${st.amplitude}</span>
+      `;
     }
   });
 };
@@ -333,18 +431,23 @@ start.addEventListener("click", () => {
   // iniatialisation de la journée
   startOfDay();
 });
+// btn drive
+drive.addEventListener("click", () => {
+  calcDuration("drive", "WRK", "Reprise conduite/travail");
+});
 // btn waiting
 waiting.addEventListener("click", () => {
-  calcDuration();
+  calcDuration("waiting", "PAU", "Attente sur place");
+});
+rest.addEventListener("click", () => {
+  calcDuration("waiting", "RPS", "Repos interservices");
 });
 // btn finish
 finish.addEventListener("click", () => {
-  state.forEach((st) => {
-    // le forEach repere dans le state la journée en cours (celle qui n'est pas isFinished), cela permet d'agir uniquement sur cette journée au moment du clic
-    if (!st.isFinished) {
-      endOfDay(st);
-    }
-  });
+  calcDuration("finish", "FNS", "Fin de journée");
+  // on recupere la journée en cours, (celle qui n'est pas isFinished), et on agit uniquement sur cette journée
+  const activeDay = state.find((day) => !day.isFinished);
+  endOfDay(activeDay);
 });
 
 // INITIALISE APP
