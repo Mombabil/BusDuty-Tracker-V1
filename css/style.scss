@@ -257,12 +257,58 @@
                 border-bottom: 1px solid $border-soft;
                 padding-bottom: 2px;
                 margin-bottom: 4px;
+                .hours{
+                    color: $glow-yellow;
+                }
                 .displayDetails{
                     display: flex;
                     justify-content: space-between;
                     padding-right: 24px;
                     &:first-child{
                         align-self: flex-start;
+                    }
+                    .title{
+                        color: $glow-yellow;
+                    }
+                }
+            }
+        }
+        .resumeOfActivities{
+            h3{
+            display: flex;
+            justify-content: flex-start;
+            align-items: center;
+            padding: 8px 0;
+            color: $border-glow;
+            font-size: 1em;
+                &::before{
+                    content: "";
+                    flex: 1;
+                    height: 1.8px;
+                    background: $border-soft;
+                    margin: 0 2.5% 0 0;
+                }
+                &::after{
+                    content: "";
+                    flex: 1;
+                    height: 1.8px;
+                    background: $border-soft;
+                    margin: 0 0 0 2.5%;
+                }
+                .hours{
+                    color: $glow-yellow;
+                    padding-right: 8px;
+                }
+            }
+            li{
+                display: flex;   
+                justify-content: space-between;
+                span{
+                    &:nth-child(1), &:nth-child(3){
+                        color: $glow-yellow;
+                    }
+                    &:nth-child(2){
+                        font-size: 1em;
                     }
                 }
             }

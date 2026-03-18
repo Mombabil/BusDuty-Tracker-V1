@@ -116,14 +116,11 @@ const startOfDay = () => {
   const workDay = {
     date: today.toLocaleDateString("fr-FR"),
     start: getTime(),
-    drive: "",
-    waiting: "",
-    rest: "",
     finish: "",
     amplitude: "",
     datas: [
       {
-        type: "TTE",
+        type: "TRA",
         start: getTime(),
         end: "",
         duration: "",
@@ -241,7 +238,7 @@ const toMinutes = (time) => {
 const toHHMM = (minutes) => {
   const h = Math.floor(minutes / 60);
   const m = minutes % 60;
-  return `${pad(h)}h${pad(m)}m`;
+  return `${pad(h)}:${pad(m)}`;
 };
 const getTotalsByType = (datas) => {
   const totals = {};
@@ -383,6 +380,10 @@ const render = () => {
       start.classList.add("disabled");
       endOfDayMsg.classList.add("showEndOfDay");
 
+      // on fait le total de TRA + PAU pour obtenir le TTE et on le sauvegarde dans le state
+      st.totals.TTE = calcTte(st.totals.TRA, st.totals.PAU);
+      saveState();
+
       // on affiche le journal d'activité de la journée en cours
       listOfActivitites.innerHTML = "";
       let html = "";
@@ -390,7 +391,7 @@ const render = () => {
       st.datas.forEach((data) => {
         html += `
           <li>
-            <span class="hours">${data.start} : </span>
+            <span class="hours">${data.start.slice(0, 5)} : </span>
             <div class="displayDetails">
               <span class="detail"> ${data.detail} </span>
               <span class="title"> ${data.type}</span>
@@ -401,28 +402,39 @@ const render = () => {
       listOfActivitites.innerHTML = html;
 
       resumeOfActivities.innerHTML += `
-        <li>
-          <span class="hours">${st.finish} :</span>
+        <h3>
+          <span class="hours">${st.finish.slice(0, 5)} :</span>
           <span class="detail"> FIN DE JOURNEE </span>
-        </li>
+        </h3>
         <li>
           <span>TTE</span>
-          <span>${st.totals.TTE + " + " + st.totals.PAU}</span>
+          <span>Temps de travail effectif</span>
+          <span>${st.totals.TTE.replace(":", "h")}</span>
         </li>
         <li>
-          <span>Travail</span>
-          <span>${st.totals.TTE}</span>
+          <span>TRA</span>
+          <span>Conduite / Travail</span>
+          <span>${st.totals.TRA.replace(":", "h")}</span>
         </li>
         <li>
-          <span>Pause</span>
-          <span>${st.totals.PAU}</span>
+          <span>PAU</span>
+          <span>Attente sur place</span>
+          <span>${st.totals.PAU.replace(":", "h")}</span>
         </li>
         <li>
-          <span>Amplitude</span>
-          <span>${st.amplitude}</span>
+          <span>AMP</span>
+          <span>Amplitude de la journée</span>
+          <span>${st.amplitude.replace(":", "h").slice(0, 5)}</span>
       `;
     }
   });
+};
+
+const calcTte = (tra, pau) => {
+  const work = tra.split(":").map(Number);
+  const waiting = pau.split(":").map(Number);
+
+  return `${pad(work[0] + waiting[0])}:${pad(work[1] + waiting[1])}`;
 };
 
 // EVENTS
