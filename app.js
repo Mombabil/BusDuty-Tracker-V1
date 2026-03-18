@@ -404,7 +404,7 @@ const render = () => {
       resumeOfActivities.innerHTML += `
         <h3>
           <span class="hours">${st.finish.slice(0, 5)} :</span>
-          <span class="detail"> FIN DE JOURNEE </span>
+          <span class="detail">FIN DE JOURNEE</span>
         </h3>
         <li>
           <span>TTE</span>

@@ -278,7 +278,7 @@
             display: flex;
             justify-content: flex-start;
             align-items: center;
-            padding: 8px 0;
+            padding: 16px 0;
             color: $border-glow;
             font-size: 1em;
                 &::before{
@@ -315,6 +315,19 @@
         }
     }
 
+    // WARNING
+    .warning{
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        text-align: center;
+        color: $glow-yellow;
+        font-family: "Orbitron", sans-serif;
+        svg{
+            width: 40px;
+            fill: $finish;
+        }
+    }
 
     // MENU DE NAVIGATION
     footer{

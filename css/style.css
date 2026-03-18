@@ -290,7 +290,7 @@ body p, body ul {
   display: flex;
   justify-content: flex-start;
   align-items: center;
-  padding: 8px 0;
+  padding: 16px 0;
   color: hsl(210, 80%, 60%);
   font-size: 1em;
 }
@@ -321,6 +321,18 @@ body p, body ul {
 }
 .container .dayJournal .resumeOfActivities li span:nth-child(2) {
   font-size: 1em;
+}
+.container .warning {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+  color: hsl(46, 100%, 60%);
+  font-family: "Orbitron", sans-serif;
+}
+.container .warning svg {
+  width: 40px;
+  fill: hsl(12, 71%, 46%);
 }
 .container footer {
   position: fixed;
