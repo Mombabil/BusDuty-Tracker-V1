@@ -349,7 +349,7 @@ const render = () => {
     activeDay.datas.forEach((data) => {
       html += `
           <li>
-            <span class="hours">${data.start} : </span>
+            <span class="hours">${data.start.slice(0, 5).replace(":", "h")} : </span>
             <div class="displayDetails">
               <span class="detail"> ${data.detail} </span>
               <span class="title"> ${data.type}</span>
