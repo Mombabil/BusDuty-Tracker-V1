@@ -252,7 +252,7 @@ body .container .warning svg {
 }
 .daysContainer .dayWork .dayRecap ul li {
   display: grid;
-  grid-template-columns: 40% calc(60% - 12px);
+  grid-template-columns: 50% 50%;
   gap: 12px;
   align-items: center;
 }

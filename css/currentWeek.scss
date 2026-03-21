@@ -120,7 +120,7 @@
                 padding: 0;
                 li{
                     display: grid;
-                    grid-template-columns: 40% calc(60% - 12px);
+                    grid-template-columns: 50% 50%;
                     gap: 12px;
                     align-items: center;
                     h3{
