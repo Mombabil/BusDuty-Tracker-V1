@@ -140,21 +140,28 @@ body .container .warning svg {
   font-size: 1.2em !important;
 }
 
-.dayWork {
+.daysContainer {
   max-width: 90%;
-  width: calc(100% - 48px);
-  margin: 0 auto;
-  background: hsl(235, 62%, 33%);
-  padding: 6px 24px;
-  border: 3px solid hsl(235, 40%, 45%);
+  width: 100%;
 }
-.dayWork h2 {
+.daysContainer .dayWork {
+  width: 100%;
+  margin: 0;
+  background: hsl(235, 62%, 33%);
+  padding: 12px 0;
+}
+.daysContainer .dayWork h2, .daysContainer .dayWork .timeline-wrapper, .daysContainer .dayWork .dayDetail, .daysContainer .dayWork .dayRecap {
+  max-width: 90%;
+  width: 100%;
+  margin: 0 auto;
+}
+.daysContainer .dayWork h2 {
   margin: 0;
   font-family: "Orbitron", sans-serif;
   color: hsl(46, 100%, 60%);
   text-align: center;
 }
-.dayWork .timeline-wrapper .timeline {
+.daysContainer .dayWork .timeline-wrapper .timeline {
   position: relative;
   width: 100%;
   height: 20px;
@@ -162,33 +169,33 @@ body .container .warning svg {
   border: 1px solid hsl(235, 40%, 45%);
   overflow: hidden;
 }
-.dayWork .timeline-wrapper .timeline .segment {
+.daysContainer .dayWork .timeline-wrapper .timeline .segment {
   position: absolute;
   height: 100%;
 }
-.dayWork .timeline-wrapper .timeline .TRA {
+.daysContainer .dayWork .timeline-wrapper .timeline .TRA {
   background: hsl(208, 77%, 51%);
 }
-.dayWork .timeline-wrapper .timeline .PAU {
+.daysContainer .dayWork .timeline-wrapper .timeline .PAU {
   background: hsl(46, 91%, 50%);
 }
-.dayWork .timeline-wrapper .timeline .RPS {
+.daysContainer .dayWork .timeline-wrapper .timeline .RPS {
   background: hsl(270, 60%, 55%);
 }
-.dayWork .timeline-wrapper .timeline-hours {
+.daysContainer .dayWork .timeline-wrapper .timeline-hours {
   position: relative;
   height: 20px;
   font-size: 12px;
   color: #aaa;
 }
-.dayWork .timeline-wrapper .timeline-hours span {
+.daysContainer .dayWork .timeline-wrapper .timeline-hours span {
   position: absolute;
   transform: translateX(-50%);
   padding: 4px 0;
   font-family: "Inter", sans-serif;
   font-size: 0.8em;
 }
-.dayWork .timeline-wrapper .timeline-hours span::before {
+.daysContainer .dayWork .timeline-wrapper .timeline-hours span::before {
   content: "";
   position: absolute;
   height: 20px;
@@ -197,38 +204,38 @@ body .container .warning svg {
   left: calc(50% + 1px);
   top: -21px;
 }
-.dayWork .dayDetail .type {
+.daysContainer .dayWork .dayDetail .type {
   display: flex;
   align-items: center;
   gap: 12px;
   height: 30px;
   border-bottom: 1px solid hsl(235, 40%, 45%);
 }
-.dayWork .dayDetail .type .title {
+.daysContainer .dayWork .dayDetail .type .title {
   display: flex;
   justify-content: flex-start;
   align-items: center;
   gap: 6px;
 }
-.dayWork .dayDetail .type .title h3 {
+.daysContainer .dayWork .dayDetail .type .title h3 {
   margin: 0;
   font-size: 1em;
   color: hsl(0, 0%, 100%);
 }
-.dayWork .dayDetail .type .title .color {
+.daysContainer .dayWork .dayDetail .type .title .color {
   width: 15px;
   height: 15px;
 }
-.dayWork .dayDetail .type .title .TRA {
+.daysContainer .dayWork .dayDetail .type .title .TRA {
   background: hsl(208, 77%, 51%);
 }
-.dayWork .dayDetail .type .title .PAU {
+.daysContainer .dayWork .dayDetail .type .title .PAU {
   background: hsl(46, 91%, 50%);
 }
-.dayWork .dayDetail .type .title .RPS {
+.daysContainer .dayWork .dayDetail .type .title .RPS {
   background: hsl(270, 60%, 55%);
 }
-.dayWork .dayDetail .type p {
+.daysContainer .dayWork .dayDetail .type p {
   font-size: 0.9em;
   font-family: "Orbitron", sans-serif;
   display: flex;
@@ -236,42 +243,42 @@ body .container .warning svg {
   width: 100%;
   color: hsl(210, 30%, 85%);
 }
-.dayWork .dayRecap ul {
+.daysContainer .dayWork .dayRecap ul {
   list-style-type: none;
   display: flex;
   flex-direction: column;
   justify-content: space-between;
   padding: 0;
 }
-.dayWork .dayRecap ul li {
+.daysContainer .dayWork .dayRecap ul li {
   display: grid;
   grid-template-columns: 40% calc(60% - 12px);
   gap: 12px;
   align-items: center;
 }
-.dayWork .dayRecap ul li h3 {
+.daysContainer .dayWork .dayRecap ul li h3 {
   margin: 0;
   font-size: 0.9em;
   display: flex;
   justify-content: space-between;
   color: hsl(210, 30%, 85%);
 }
-.dayWork .dayRecap ul li div {
+.daysContainer .dayWork .dayRecap ul li div {
   margin: 0 auto;
   height: 15px;
 }
-.dayWork .dayRecap ul li .tte {
+.daysContainer .dayWork .dayRecap ul li .tte {
   background: hsl(109, 71%, 38%);
 }
-.dayWork .dayRecap ul li .tra {
+.daysContainer .dayWork .dayRecap ul li .tra {
   background: hsl(208, 77%, 51%);
 }
-.dayWork .dayRecap ul li .pau {
+.daysContainer .dayWork .dayRecap ul li .pau {
   background: hsl(46, 91%, 50%);
 }
-.dayWork .dayRecap ul li .rps {
+.daysContainer .dayWork .dayRecap ul li .rps {
   background: hsl(270, 60%, 55%);
 }
-.dayWork .dayRecap ul li .amp {
+.daysContainer .dayWork .dayRecap ul li .amp {
   background: hsl(12, 71%, 46%);
 }/*# sourceMappingURL=currentWeek.css.map */
