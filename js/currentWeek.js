@@ -97,23 +97,23 @@ const render = () => {
                   <ul>
                     <li>
                     <h3><span>TTE : </span>${st.totals.TTE.replace(":", "h")}</h3>
-                    <div class="tte" style="width: ${convertStrToNum(st.totals.TTE)}"></div>
+                    <div class="tte" style="width: ${convertStrToNum(st.totals.TTE)}%"></div>
                     </li>
                     <li>
                     <h3><span>Travail : </span>${st.totals.TRA.replace(":", "h")}</h3>
-                    <div class="tra" style="width: ${convertStrToNum(st.totals.TRA)}"></div>
+                    <div class="tra" style="width: ${convertStrToNum(st.totals.TRA)}%"></div>
                     </li>
                     <li>
                     <h3><span>Attente : </span>${st.totals.PAU.replace(":", "h")}</h3>
-                    <div class="pau" style="width: ${convertStrToNum(st.totals.PAU)}"></div>
+                    <div class="pau" style="width: ${convertStrToNum(st.totals.PAU)}%"></div>
                     </li>
                     <li>
                     <h3><span>Repos : </span>${st.totals.RPS.replace(":", "h")}</h3>
-                    <div class="rps" style="width: ${convertStrToNum(st.totals.RPS)}"></div>
+                    <div class="rps" style="width: ${convertStrToNum(st.totals.RPS)}%"></div>
                     </li>
                     <li>
                     <h3><span>Amplitude : </span>${st.amplitude.replace(":", "h")}</h3>
-                    <div class="amp" style="width: ${convertStrToNum(st.amplitude)}"></div>
+                    <div class="amp" style="width: ${convertStrToNum(st.amplitude)}%"></div>
                     </li>
                   </ul>
           </div>
