@@ -142,7 +142,7 @@ body .container .warning svg {
 
 .dayWork {
   max-width: 90%;
-  width: 100%;
+  width: calc(100% - 48px);
   margin: 0 auto;
   background: hsl(235, 62%, 33%);
   padding: 6px 24px;
