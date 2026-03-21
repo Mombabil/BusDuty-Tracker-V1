@@ -1,3 +1,5 @@
+import { displayDate } from "./utils/displayDate.js";
+
 // DOWNLOAD APP ON MOBILE
 if ("serviceWorker" in navigator) {
   window.addEventListener("load", () => {
@@ -41,21 +43,6 @@ let chronoInterval = null;
 // enregistre les changements de state dans le localStorage
 const saveState = () => {
   localStorage.setItem("busTrackerState", JSON.stringify(state));
-};
-
-// // affichage de la date du jour en francais
-const displayDate = () => {
-  const today = new Date();
-
-  const options = {
-    weekday: "long",
-    month: "long",
-    day: "numeric",
-  };
-
-  const todayToLocaleStr = today.toLocaleDateString("fr-FR", options);
-
-  return todayToLocaleStr;
 };
 
 const calcDuration = (currentStatut, type, detail) => {
@@ -214,7 +201,6 @@ const getTime = () => {
 // - on reactive le btn "Prise de Service" et on lui rend sa couleur
 const endOfDay = (finish) => {
   // actualisation du state actif
-  finish.amplitude = currentlyWorked.textContent;
   finish.finish = getTime();
   finish.isFinished = true;
   finish.currentStatut = "finish";
@@ -222,6 +208,14 @@ const endOfDay = (finish) => {
   const totals = getTotalsByType(finish.datas);
 
   finish.totals = totals;
+
+  // on gère le cas ou il n'y a pas d'attente ou de pause dans la journée
+  if (!finish.totals.RPS) {
+    finish.totals.RPS = "00:00";
+  }
+  if (!finish.totals.PAU) {
+    finish.totals.PAU = "00:00";
+  }
 
   // on envoi le nouveau state au localStorage
   saveState();
@@ -310,7 +304,6 @@ const render = () => {
   // par default, seul le btn prise de service est activé
   defaultButtons();
 
-  // AMELIORATION POSSIBLE POUR REMPLACER state.forEach(())
   const activeDay = state.find((day) => !day.isFinished)
     ? state.find((day) => !day.isFinished)
     : "Pas de journée active";
@@ -381,7 +374,16 @@ const render = () => {
       endOfDayMsg.classList.add("showEndOfDay");
 
       // on fait le total de TRA + PAU pour obtenir le TTE et on le sauvegarde dans le state
-      st.totals.TTE = calcTte(st.totals.TRA, st.totals.PAU);
+      st.totals.TTE = calcTte(
+        st.totals.TRA,
+        st.totals.PAU ? st.totals.PAU : "00:00",
+      );
+
+      st.amplitude = calcAmp(
+        st.totals.TTE,
+        st.totals.RPS ? st.totals.RPS : "00:00",
+      );
+
       saveState();
 
       // on affiche le journal d'activité de la journée en cours
@@ -431,6 +433,13 @@ const render = () => {
 };
 
 const calcTte = (tra, pau) => {
+  const work = tra.split(":").map(Number);
+  const waiting = pau.split(":").map(Number);
+
+  return `${pad(work[0] + waiting[0])}:${pad(work[1] + waiting[1])}`;
+};
+
+const calcAmp = (tra, pau) => {
   const work = tra.split(":").map(Number);
   const waiting = pau.split(":").map(Number);
 

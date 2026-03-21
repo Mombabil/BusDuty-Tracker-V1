@@ -1,0 +1,14 @@
+// DOWNLOAD APP ON MOBILE
+if ("serviceWorker" in navigator) {
+  window.addEventListener("load", () => {
+    navigator.serviceWorker
+      .register("/service-worker.js")
+      .then(() => console.log("Service Worker enregistré"))
+      .catch((err) => console.log("Erreur SW:", err));
+  });
+}
+
+const render = () => {};
+
+// INITIALISE APP
+render();
