@@ -454,7 +454,7 @@ waiting.addEventListener("click", () => {
   calcDuration("waiting", "PAU", "Attente sur place");
 });
 rest.addEventListener("click", () => {
-  calcDuration("waiting", "RPS", "Repos interservices");
+  calcDuration("rest", "RPS", "Repos interservices");
 });
 // btn finish
 finish.addEventListener("click", () => {

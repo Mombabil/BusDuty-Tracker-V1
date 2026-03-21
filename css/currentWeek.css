@@ -146,6 +146,7 @@ body .container .warning svg {
   margin: 0 auto;
   background: hsl(235, 62%, 33%);
   padding: 6px 24px;
+  border: 3px solid hsl(235, 40%, 45%);
 }
 .dayWork h2 {
   margin: 0;
@@ -195,4 +196,70 @@ body .container .warning svg {
   background-color: hsl(235, 40%, 45%);
   left: calc(50% + 1px);
   top: -21px;
+}
+.dayWork .dayDetail .type {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  height: 30px;
+  border-bottom: 1px solid hsl(235, 40%, 45%);
+}
+.dayWork .dayDetail .type .title {
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
+  gap: 6px;
+}
+.dayWork .dayDetail .type .title h3 {
+  margin: 0;
+  font-size: 1em;
+  color: hsl(0, 0%, 100%);
+}
+.dayWork .dayDetail .type .title .color {
+  width: 15px;
+  height: 15px;
+}
+.dayWork .dayDetail .type .title .TRA {
+  background: hsl(208, 77%, 51%);
+}
+.dayWork .dayDetail .type .title .PAU {
+  background: hsl(46, 91%, 50%);
+}
+.dayWork .dayDetail .type .title .RPS {
+  background: hsl(270, 60%, 55%);
+}
+.dayWork .dayDetail .type p {
+  font-size: 0.9em;
+  font-family: "Orbitron", sans-serif;
+  display: flex;
+  justify-content: space-between;
+  width: 100%;
+  color: hsl(210, 30%, 85%);
+}
+.dayWork .dayRecap ul {
+  list-style-type: none;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  padding: 0;
+}
+.dayWork .dayRecap ul li {
+  display: grid;
+  grid-template-columns: 40% calc(60% - 12px);
+  gap: 12px;
+  align-items: center;
+}
+.dayWork .dayRecap ul li h3 {
+  margin: 0;
+  font-size: 0.9em;
+  display: flex;
+  justify-content: space-between;
+  color: hsl(210, 30%, 85%);
+}
+.dayWork .dayRecap ul li div {
+  margin: 0 auto;
+  height: 15px;
+}
+.dayWork .dayRecap ul li .tte {
+  background: hsl(109, 71%, 38%);
 }/*# sourceMappingURL=currentWeek.css.map */

@@ -74,6 +74,49 @@ const render = () => {
               ${generateHours()}
             </div>
           </div>
+          <div class="dayDetail">
+                ${st.datas
+                  .map(
+                    (data) =>
+                      `
+                    <div class="type">
+                      <div class="title">
+                        <div class="color ${data.type}"></div>
+                        <h3>${data.type}</h3>
+                      </div>
+                      <p>
+                      <span>${data.detail} :</span>
+                      <span>${data.start.slice(0, 5).replace(":", "h")} - ${data.end.slice(0, 5).replace(":", "h")}</span>
+                      </p>
+                    </div>
+                  `,
+                  )
+                  .join("")}
+          </div>
+          <div class="dayRecap">
+                  <ul>
+                    <li>
+                    <h3><span>TTE : </span>${st.totals.TTE.replace(":", "h")}</h3>
+                    <div class="tte" style="width: ${convertStrToNum(st.totals.TTE)}"></div>
+                    </li>
+                    <li>
+                    <h3><span>Travail : </span>${st.totals.TRA.replace(":", "h")}</h3>
+                    <div class="tra" style="width: ${convertStrToNum(st.totals.TRA)}"></div>
+                    </li>
+                    <li>
+                    <h3><span>Attente : </span>${st.totals.PAU.replace(":", "h")}</h3>
+                    <div class="pau" style="width: ${convertStrToNum(st.totals.PAU)}"></div>
+                    </li>
+                    <li>
+                    <h3><span>Repos : </span>${st.totals.RPS.replace(":", "h")}</h3>
+                    <div class="rps" style="width: ${convertStrToNum(st.totals.RPS)}"></div>
+                    </li>
+                    <li>
+                    <h3><span>Amplitude : </span>${st.amplitude.replace(":", "h")}</h3>
+                    <div class="amp" style="width: ${convertStrToNum(st.amplitude)}"></div>
+                    </li>
+                  </ul>
+          </div>
         </article>
       `;
     }
