@@ -120,7 +120,7 @@
                 padding: 0;
                 li{
                     display: grid;
-                    grid-template-columns: 50% 50%;
+                    grid-template-columns: 50% calc(50% - 12px);
                     gap: 12px;
                     align-items: center;
                     h3{
@@ -130,24 +130,30 @@
                         justify-content: space-between;
                         color: $text-secondary;
                     }
-                    div{
-                        margin: 0 auto;
-                        height: 15px;
-                    }
-                    .tte{
-                        background: $service;
-                    }
-                    .tra{
-                        background: $drive;
-                    }
-                    .pau{
-                        background: $waiting;
-                    }
-                    .rps{
-                        background: $rest;
-                    }
-                    .amp{
-                        background: $stat-amplitude;
+                    .timeline{
+                        width: 100%;
+                        background: $border-soft;
+                        position: relative;
+                        div{
+                            width: 100%;
+                            margin: 0 auto;
+                            height: 15px;
+                        }
+                        .tte{
+                            background: $service;
+                        }
+                        .tra{
+                            background: $drive;
+                        }
+                        .pau{
+                            background: $waiting;
+                        }
+                        .rps{
+                            background: $rest;
+                        }
+                        .amp{
+                            background: $stat-amplitude;
+                        }
                     }
                 }
             }

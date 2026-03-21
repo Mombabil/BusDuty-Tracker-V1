@@ -252,7 +252,7 @@ body .container .warning svg {
 }
 .daysContainer .dayWork .dayRecap ul li {
   display: grid;
-  grid-template-columns: 50% 50%;
+  grid-template-columns: 50% calc(50% - 12px);
   gap: 12px;
   align-items: center;
 }
@@ -263,22 +263,28 @@ body .container .warning svg {
   justify-content: space-between;
   color: hsl(210, 30%, 85%);
 }
-.daysContainer .dayWork .dayRecap ul li div {
+.daysContainer .dayWork .dayRecap ul li .timeline {
+  width: 100%;
+  background: hsl(235, 40%, 45%);
+  position: relative;
+}
+.daysContainer .dayWork .dayRecap ul li .timeline div {
+  width: 100%;
   margin: 0 auto;
   height: 15px;
 }
-.daysContainer .dayWork .dayRecap ul li .tte {
+.daysContainer .dayWork .dayRecap ul li .timeline .tte {
   background: hsl(109, 71%, 38%);
 }
-.daysContainer .dayWork .dayRecap ul li .tra {
+.daysContainer .dayWork .dayRecap ul li .timeline .tra {
   background: hsl(208, 77%, 51%);
 }
-.daysContainer .dayWork .dayRecap ul li .pau {
+.daysContainer .dayWork .dayRecap ul li .timeline .pau {
   background: hsl(46, 91%, 50%);
 }
-.daysContainer .dayWork .dayRecap ul li .rps {
+.daysContainer .dayWork .dayRecap ul li .timeline .rps {
   background: hsl(270, 60%, 55%);
 }
-.daysContainer .dayWork .dayRecap ul li .amp {
+.daysContainer .dayWork .dayRecap ul li .timeline .amp {
   background: hsl(12, 71%, 46%);
 }/*# sourceMappingURL=currentWeek.css.map */
