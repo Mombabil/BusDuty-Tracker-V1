@@ -133,7 +133,8 @@
                     .timeline{
                         width: 100%;
                         background: $border-soft;
-                        position: relative;
+                        display: flex;
+                        justify-content: flex-start;
                         div{
                             width: 100%;
                             margin: 0 auto;

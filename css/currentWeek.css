@@ -266,7 +266,8 @@ body .container .warning svg {
 .daysContainer .dayWork .dayRecap ul li .timeline {
   width: 100%;
   background: hsl(235, 40%, 45%);
-  position: relative;
+  display: flex;
+  justify-content: flex-start;
 }
 .daysContainer .dayWork .dayRecap ul li .timeline div {
   width: 100%;
