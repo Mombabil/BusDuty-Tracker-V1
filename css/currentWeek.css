@@ -262,4 +262,16 @@ body .container .warning svg {
 }
 .dayWork .dayRecap ul li .tte {
   background: hsl(109, 71%, 38%);
+}
+.dayWork .dayRecap ul li .tra {
+  background: hsl(208, 77%, 51%);
+}
+.dayWork .dayRecap ul li .pau {
+  background: hsl(46, 91%, 50%);
+}
+.dayWork .dayRecap ul li .rps {
+  background: hsl(270, 60%, 55%);
+}
+.dayWork .dayRecap ul li .amp {
+  background: hsl(12, 71%, 46%);
 }/*# sourceMappingURL=currentWeek.css.map */
