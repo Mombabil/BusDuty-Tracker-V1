@@ -1,4 +1,5 @@
 import { getCurrentWeek } from "./utils/getCurrentWeek.js";
+import { displayDate } from "./utils/displayDate.js";
 
 // DOWNLOAD APP ON MOBILE
 if ("serviceWorker" in navigator) {
@@ -41,18 +42,37 @@ const createSegment = (type, startTime, endTime) => {
   return html;
 };
 
+const generateHours = () => {
+  const html = [];
+  for (let h = 0; h <= 24; h += 2) {
+    const percent = (h / 24) * 100;
+
+    html.push(
+      `<span style="left: ${Math.floor(percent)}%;">${h.toString().padStart(2, "0") + "h"}</span>`,
+    );
+  }
+  return html.join("");
+};
 const render = () => {
   state.forEach((st) => {
     if (currentWeek === st.week) {
       daysContainer.innerHTML = `
         <article class="day">
-          <div class="timeline">
-            ${st.datas.map(
-              (data) =>
-                `
-                ${createSegment(data.type, convertStrToNum(data.start), convertStrToNum(data.end))}
-              `,
-            )}
+          <h2>${displayDate()}</h2>
+          <div class="timeline-wrapper">
+            <div class="timeline">
+              ${st.datas
+                .map(
+                  (data) =>
+                    `
+                  ${createSegment(data.type, convertStrToNum(data.start), convertStrToNum(data.end))}
+                `,
+                )
+                .join("")}
+            </div>
+            <div class="timeline-hours">
+              ${generateHours()}
+            </div>
           </div>
         </article>
       `;
