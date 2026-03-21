@@ -258,7 +258,7 @@ body .container .warning svg {
 }
 .daysContainer .dayWork .dayRecap ul li h3 {
   margin: 0;
-  font-size: 0.9em;
+  font-size: 0.8em;
   display: flex;
   justify-content: space-between;
   color: hsl(210, 30%, 85%);
