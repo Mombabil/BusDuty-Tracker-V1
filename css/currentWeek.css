@@ -136,6 +136,10 @@ body .container .warning svg {
   fill: hsl(12, 71%, 46%);
 }
 
+.currentDate {
+  font-size: 1.2em !important;
+}
+
 .timeline {
   position: relative;
   width: 100%;
@@ -148,12 +152,12 @@ body .container .warning svg {
   position: absolute;
   height: 100%;
 }
-.timeline .tte {
+.timeline .TRA {
   background: hsl(208, 77%, 51%);
 }
-.timeline .waiting {
+.timeline .PAU {
   background: hsl(46, 91%, 50%);
 }
-.timeline .rest {
+.timeline .RPS {
   background: hsl(270, 60%, 55%);
 }/*# sourceMappingURL=currentWeek.css.map */

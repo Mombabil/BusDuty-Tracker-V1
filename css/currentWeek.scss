@@ -1,5 +1,9 @@
 @import "./settings";
 
+.currentDate{
+    font-size: 1.2em !important;
+}
+
 .timeline{
     position: relative;
     width: 100%;
@@ -12,13 +16,13 @@
         position: absolute;
         height: 100%;
     }
-    .tte{
+    .TRA{
         background: $stat-drive;
     }
-    .waiting{
+    .PAU{
         background: $stat-wait;
     }
-    .rest{
+    .RPS{
         background: $stat-rest;
     }
 }

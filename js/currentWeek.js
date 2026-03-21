@@ -19,7 +19,6 @@ const timeToPercent = (hours, minutes) => {
 
   return (totalMinutes / (24 * 60)) * 100;
 };
-
 const convertStrToNum = (str) => {
   const result = str.split(":").map(Number);
   const hours = result[0];
@@ -27,7 +26,6 @@ const convertStrToNum = (str) => {
 
   timeToPercent(hours, minutes);
 };
-
 const createSegment = (type, startTime, endTime) => {
   const segment = document.createElement("div");
   segment.classList.add("segment", type);
@@ -44,10 +42,13 @@ const createSegment = (type, startTime, endTime) => {
 const render = () => {
   state.forEach((st) => {
     st.datas.forEach((data) => {
+      console.log(data.type, data.start, data.end);
+
       timeline.appendChild(
         createSegment(
           data.type,
-          convertStrToNum(data.start, convertStrToNum(data.end)),
+          convertStrToNum(data.start),
+          convertStrToNum(data.end),
         ),
       );
     });
