@@ -1,4 +1,5 @@
 import { displayDate } from "./utils/displayDate.js";
+import { getCurrentWeek } from "./utils/getCurrentWeek.js";
 
 // DOWNLOAD APP ON MOBILE
 if ("serviceWorker" in navigator) {
@@ -289,14 +290,6 @@ const updateChrono = (array) => {
   const seconds = Math.floor((diffMs % (1000 * 60)) / 1000);
 
   currentlyWorked.textContent = `${pad(hours)}:${pad(minutes)}:${pad(seconds)}`;
-};
-
-// calcule le numéro de la semaine en cours
-const getCurrentWeek = (date) => {
-  let currentdate = date;
-  let oneJan = new Date(currentdate.getFullYear(), 0, 1);
-  let numberOfDays = Math.floor((currentdate - oneJan) / (24 * 60 * 60 * 1000));
-  return Math.ceil((currentdate.getDay() + 1 + numberOfDays) / 7);
 };
 
 // RENDER

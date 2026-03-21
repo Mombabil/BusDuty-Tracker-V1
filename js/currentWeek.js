@@ -1,3 +1,5 @@
+import { getCurrentWeek } from "./utils/getCurrentWeek.js";
+
 // DOWNLOAD APP ON MOBILE
 if ("serviceWorker" in navigator) {
   window.addEventListener("load", () => {
@@ -8,7 +10,10 @@ if ("serviceWorker" in navigator) {
   });
 }
 
-const timeline = document.querySelector(".timeline");
+const daysContainer = document.querySelector(".daysContainer");
+
+const today = new Date();
+const currentWeek = getCurrentWeek(today);
 
 // initialisation du state
 let state = JSON.parse(localStorage.getItem("busTrackerState")) || [];
@@ -17,41 +22,41 @@ let state = JSON.parse(localStorage.getItem("busTrackerState")) || [];
 const timeToPercent = (hours, minutes) => {
   const totalMinutes = hours * 60 + minutes;
 
-  return (totalMinutes / (24 * 60)) * 100;
+  return Math.floor((totalMinutes / (24 * 60)) * 100);
 };
 const convertStrToNum = (str) => {
-  const result = str.split(":").map(Number);
+  const result = str.slice(0, 5).split(":").map(Number);
+
   const hours = result[0];
   const minutes = result[1];
 
-  timeToPercent(hours, minutes);
+  return timeToPercent(hours, minutes);
 };
 const createSegment = (type, startTime, endTime) => {
-  const segment = document.createElement("div");
-  segment.classList.add("segment", type);
+  const width = endTime - startTime;
 
-  const start = startTime;
-  const end = endTime;
-
-  segment.style.left = start + "%";
-  segment.style.width = end - start + "%";
-
-  return segment;
+  const html = `
+    <div class="segment ${type}" style="left: ${startTime}%; width: ${width}%;"></div>
+  `;
+  return html;
 };
 
 const render = () => {
   state.forEach((st) => {
-    st.datas.forEach((data) => {
-      console.log(data.type, data.start, data.end);
-
-      timeline.appendChild(
-        createSegment(
-          data.type,
-          convertStrToNum(data.start),
-          convertStrToNum(data.end),
-        ),
-      );
-    });
+    if (currentWeek === st.week) {
+      daysContainer.innerHTML = `
+        <article class="day">
+          <div class="timeline">
+            ${st.datas.map(
+              (data) =>
+                `
+                ${createSegment(data.type, convertStrToNum(data.start), convertStrToNum(data.end))}
+              `,
+            )}
+          </div>
+        </article>
+      `;
+    }
   });
 };
 
