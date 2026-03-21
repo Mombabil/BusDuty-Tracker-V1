@@ -57,7 +57,7 @@ const render = () => {
   state.forEach((st) => {
     if (currentWeek === st.week) {
       daysContainer.innerHTML = `
-        <article class="day">
+        <article class="dayWork">
           <h2>${displayDate()}</h2>
           <div class="timeline-wrapper">
             <div class="timeline">
