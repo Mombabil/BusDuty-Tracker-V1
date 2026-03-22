@@ -63,7 +63,7 @@ const render = () => {
     if (currentWeek === st.week) {
       daysContainer.innerHTML += `
         <article class="dayWork">
-          <h2>${st.date} : ${st.start.replace(":", "h").slice(0, 5)} - ${st.finish.replace(":", "h").slice(0, 5)}</h2>
+          <h2>${st.date.slice(0, 5)} : ${st.start.replace(":", "h").slice(0, 5)} - ${st.finish.replace(":", "h").slice(0, 5)}</h2>
           <div class="timeline-wrapper">
             <div class="timeline">
               ${st.datas
