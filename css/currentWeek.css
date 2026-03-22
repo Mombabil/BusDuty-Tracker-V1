@@ -162,6 +162,13 @@ body .container .warning svg {
   color: hsl(46, 100%, 60%);
   text-align: center;
   font-size: 1.2em;
+  margin: 0;
+}
+.daysContainer .dayWork .startAndStop {
+  text-align: center;
+  color: hsl(210, 30%, 85%);
+  margin: 0;
+  padding: 0 5% 12px 5%;
 }
 .daysContainer .dayWork .timeline-wrapper .timeline {
   position: relative;

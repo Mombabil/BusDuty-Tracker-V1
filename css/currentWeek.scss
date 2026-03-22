@@ -24,6 +24,13 @@
             color: $glow-yellow;
             text-align: center;
             font-size: 1.2em;
+            margin: 0;
+        }
+        .startAndStop{
+            text-align: center;
+            color: $text-secondary;
+            margin: 0;
+            padding: 0 5% 12px 5%;
         }
         .timeline-wrapper{
             .timeline{

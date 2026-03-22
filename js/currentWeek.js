@@ -53,17 +53,33 @@ const generateHours = () => {
   }
   return html.join("");
 };
+
+// recuperation du jour de la semaine de la journée de travail en lettre
+function getDayNameFromDate(dateStr) {
+  const match = dateStr.split("/");
+  if (!match) return null;
+
+  const day = parseInt(match[0], 10);
+  // Les mois commencent à 0
+  const month = parseInt(match[1], 10) - 1;
+  const year = parseInt(match[2], 10);
+
+  // Création de l'objet Date
+  const date = new Date(year, month, day);
+
+  // Récupération du jour en toutes lettres (français)
+  return date.toLocaleDateString("fr-FR", { weekday: "long" });
+}
+
 const render = () => {
   state.forEach((st) => {
-    console.log(st);
-
-    // le state a la date du 21/03/2026 renvoi semaine 13 et le state du lendemain du 22/03/2026 renvoi semaine 12. Il s'agit du samedi et du dimanche
-    console.log(currentWeek, st.week);
-
     if (currentWeek === st.week) {
       daysContainer.innerHTML += `
         <article class="dayWork">
-          <h2>${st.date.slice(0, 5)} : ${st.start.replace(":", "h").slice(0, 5)} - ${st.finish.replace(":", "h").slice(0, 5)}</h2>
+          <h2>${getDayNameFromDate(st.date)} ${st.date.slice(0, 5)} :
+          </h2> 
+          <h3 class="startAndStop">${st.start.replace(":", "h").slice(0, 5)} - ${st.finish.replace(":", "h").slice(0, 5)}
+          </h3>
           <div class="timeline-wrapper">
             <div class="timeline">
               ${st.datas
