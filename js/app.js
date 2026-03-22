@@ -429,14 +429,30 @@ const calcTte = (tra, pau) => {
   const work = tra.split(":").map(Number);
   const waiting = pau.split(":").map(Number);
 
-  return `${pad(work[0] + waiting[0])}:${pad(work[1] + waiting[1])}`;
+  const hour = work[0] + waiting[0];
+  const minutes = work[1] + waiting[1];
+
+  if (minutes >= 60) {
+    hour += 1;
+    minutes = minutes % 60;
+  }
+
+  return `${pad(hour)}:${pad(minutes)}`;
 };
 
 const calcAmp = (tra, pau) => {
   const work = tra.split(":").map(Number);
   const waiting = pau.split(":").map(Number);
 
-  return `${pad(work[0] + waiting[0])}:${pad(work[1] + waiting[1])}`;
+  const hour = work[0] + waiting[0];
+  const minutes = work[1] + waiting[1];
+
+  if (minutes >= 60) {
+    hour += 1;
+    minutes = minutes % 60;
+  }
+
+  return `${pad(hour)}:${pad(minutes)}`;
 };
 
 // EVENTS
