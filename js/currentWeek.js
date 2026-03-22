@@ -75,6 +75,7 @@ const render = () => {
   state.forEach((st) => {
     if (currentWeek === st.week) {
       daysContainer.innerHTML += `
+      <div class="shapeDayWork">
         <article class="dayWork">
           <h2>${getDayNameFromDate(st.date)} ${st.date.slice(0, 5)} :
           </h2> 
@@ -149,6 +150,7 @@ const render = () => {
                   </ul>
           </div>
         </article>
+      </div>
       `;
     }
   });

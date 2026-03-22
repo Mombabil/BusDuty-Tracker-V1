@@ -144,19 +144,25 @@ body .container .warning svg {
   max-width: 90%;
   width: 100%;
 }
-.daysContainer .dayWork {
+.daysContainer .shapeDayWork {
+  clip-path: polygon(5% 100%, 0 95%, 0 5%, 5% 0, 95% 0, 100% 5%, 100% 95%, 95% 100%);
+  background: hsl(235, 40%, 45%);
+  padding: 2px;
+  margin-bottom: 12px;
+}
+.daysContainer .shapeDayWork .dayWork {
   width: 100%;
   margin: 0;
-  margin-bottom: 12px;
   background: hsl(235, 62%, 33%);
   padding: 0 0 12px 0;
+  clip-path: polygon(5% 100%, 0 95%, 0 5%, 5% 0, 95% 0, 100% 5%, 100% 95%, 95% 100%);
 }
-.daysContainer .dayWork .timeline-wrapper, .daysContainer .dayWork .dayDetail, .daysContainer .dayWork .dayRecap {
+.daysContainer .shapeDayWork .dayWork .timeline-wrapper, .daysContainer .shapeDayWork .dayWork .dayDetail, .daysContainer .shapeDayWork .dayWork .dayRecap {
   max-width: 90%;
   width: 100%;
   margin: 0 auto;
 }
-.daysContainer .dayWork h2 {
+.daysContainer .shapeDayWork .dayWork h2 {
   padding: 12px 5% 0 5%;
   font-family: "Orbitron", sans-serif;
   color: hsl(46, 100%, 60%);
@@ -164,13 +170,13 @@ body .container .warning svg {
   font-size: 1.2em;
   margin: 0;
 }
-.daysContainer .dayWork .startAndStop {
+.daysContainer .shapeDayWork .dayWork .startAndStop {
   text-align: center;
   color: hsl(210, 30%, 85%);
   margin: 0;
   padding: 0 5% 12px 5%;
 }
-.daysContainer .dayWork .timeline-wrapper .timeline {
+.daysContainer .shapeDayWork .dayWork .timeline-wrapper .timeline {
   position: relative;
   width: 100%;
   height: 20px;
@@ -178,33 +184,33 @@ body .container .warning svg {
   border: 1px solid hsl(235, 40%, 45%);
   overflow: hidden;
 }
-.daysContainer .dayWork .timeline-wrapper .timeline .segment {
+.daysContainer .shapeDayWork .dayWork .timeline-wrapper .timeline .segment {
   position: absolute;
   height: 100%;
 }
-.daysContainer .dayWork .timeline-wrapper .timeline .TRA {
+.daysContainer .shapeDayWork .dayWork .timeline-wrapper .timeline .TRA {
   background: hsl(208, 77%, 51%);
 }
-.daysContainer .dayWork .timeline-wrapper .timeline .PAU {
+.daysContainer .shapeDayWork .dayWork .timeline-wrapper .timeline .PAU {
   background: hsl(46, 91%, 50%);
 }
-.daysContainer .dayWork .timeline-wrapper .timeline .RPS {
+.daysContainer .shapeDayWork .dayWork .timeline-wrapper .timeline .RPS {
   background: hsl(270, 60%, 55%);
 }
-.daysContainer .dayWork .timeline-wrapper .timeline-hours {
+.daysContainer .shapeDayWork .dayWork .timeline-wrapper .timeline-hours {
   position: relative;
   height: 20px;
   font-size: 12px;
   color: #aaa;
 }
-.daysContainer .dayWork .timeline-wrapper .timeline-hours span {
+.daysContainer .shapeDayWork .dayWork .timeline-wrapper .timeline-hours span {
   position: absolute;
   transform: translateX(-50%);
   padding: 4px 0;
   font-family: "Inter", sans-serif;
   font-size: 0.8em;
 }
-.daysContainer .dayWork .timeline-wrapper .timeline-hours span::before {
+.daysContainer .shapeDayWork .dayWork .timeline-wrapper .timeline-hours span::before {
   content: "";
   position: absolute;
   height: 20px;
@@ -213,38 +219,38 @@ body .container .warning svg {
   left: calc(50% + 1px);
   top: -21px;
 }
-.daysContainer .dayWork .dayDetail .type {
+.daysContainer .shapeDayWork .dayWork .dayDetail .type {
   display: flex;
   align-items: center;
   gap: 12px;
   height: 30px;
   border-bottom: 1px solid hsl(235, 40%, 45%);
 }
-.daysContainer .dayWork .dayDetail .type .title {
+.daysContainer .shapeDayWork .dayWork .dayDetail .type .title {
   display: flex;
   justify-content: flex-start;
   align-items: center;
   gap: 6px;
 }
-.daysContainer .dayWork .dayDetail .type .title h3 {
+.daysContainer .shapeDayWork .dayWork .dayDetail .type .title h3 {
   margin: 0;
   font-size: 0.8em;
   color: hsl(0, 0%, 100%);
 }
-.daysContainer .dayWork .dayDetail .type .title .color {
+.daysContainer .shapeDayWork .dayWork .dayDetail .type .title .color {
   width: 15px;
   height: 15px;
 }
-.daysContainer .dayWork .dayDetail .type .title .TRA {
+.daysContainer .shapeDayWork .dayWork .dayDetail .type .title .TRA {
   background: hsl(208, 77%, 51%);
 }
-.daysContainer .dayWork .dayDetail .type .title .PAU {
+.daysContainer .shapeDayWork .dayWork .dayDetail .type .title .PAU {
   background: hsl(46, 91%, 50%);
 }
-.daysContainer .dayWork .dayDetail .type .title .RPS {
+.daysContainer .shapeDayWork .dayWork .dayDetail .type .title .RPS {
   background: hsl(270, 60%, 55%);
 }
-.daysContainer .dayWork .dayDetail .type p {
+.daysContainer .shapeDayWork .dayWork .dayDetail .type p {
   font-size: 0.8em;
   font-family: "Orbitron", sans-serif;
   display: flex;
@@ -253,51 +259,51 @@ body .container .warning svg {
   width: 100%;
   color: hsl(210, 30%, 85%);
 }
-.daysContainer .dayWork .dayDetail .type p span {
+.daysContainer .shapeDayWork .dayWork .dayDetail .type p span {
   font-size: 0.9em;
 }
-.daysContainer .dayWork .dayRecap ul {
+.daysContainer .shapeDayWork .dayWork .dayRecap ul {
   list-style-type: none;
   display: flex;
   flex-direction: column;
   justify-content: space-between;
   padding: 0;
 }
-.daysContainer .dayWork .dayRecap ul li {
+.daysContainer .shapeDayWork .dayWork .dayRecap ul li {
   display: grid;
   grid-template-columns: 50% calc(50% - 12px);
   gap: 12px;
   align-items: center;
 }
-.daysContainer .dayWork .dayRecap ul li h3 {
+.daysContainer .shapeDayWork .dayWork .dayRecap ul li h3 {
   margin: 0;
   font-size: 0.8em;
   display: flex;
   justify-content: space-between;
   color: hsl(210, 30%, 85%);
 }
-.daysContainer .dayWork .dayRecap ul li .timeline {
+.daysContainer .shapeDayWork .dayWork .dayRecap ul li .timeline {
   width: 100%;
   background: hsl(235, 40%, 45%);
   display: flex;
   justify-content: flex-start;
 }
-.daysContainer .dayWork .dayRecap ul li .timeline div {
+.daysContainer .shapeDayWork .dayWork .dayRecap ul li .timeline div {
   width: 100%;
   height: 15px;
 }
-.daysContainer .dayWork .dayRecap ul li .timeline .tte {
+.daysContainer .shapeDayWork .dayWork .dayRecap ul li .timeline .tte {
   background: hsl(109, 71%, 38%);
 }
-.daysContainer .dayWork .dayRecap ul li .timeline .tra {
+.daysContainer .shapeDayWork .dayWork .dayRecap ul li .timeline .tra {
   background: hsl(208, 77%, 51%);
 }
-.daysContainer .dayWork .dayRecap ul li .timeline .pau {
+.daysContainer .shapeDayWork .dayWork .dayRecap ul li .timeline .pau {
   background: hsl(46, 91%, 50%);
 }
-.daysContainer .dayWork .dayRecap ul li .timeline .rps {
+.daysContainer .shapeDayWork .dayWork .dayRecap ul li .timeline .rps {
   background: hsl(270, 60%, 55%);
 }
-.daysContainer .dayWork .dayRecap ul li .timeline .amp {
+.daysContainer .shapeDayWork .dayWork .dayRecap ul li .timeline .amp {
   background: hsl(12, 71%, 46%);
 }/*# sourceMappingURL=currentWeek.css.map */
