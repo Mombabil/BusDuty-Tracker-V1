@@ -12,17 +12,18 @@
         margin: 0;
         margin-bottom: 12px;
         background: $bg-panel;
-        padding: 12px 0;
-        h2, .timeline-wrapper, .dayDetail, .dayRecap{
+        padding: 0 0 12px 0;
+        .timeline-wrapper, .dayDetail, .dayRecap{
             max-width: 90%;
             width: 100%;
             margin: 0 auto;
         }
         h2{
-            margin: 0 auto;
+            padding: 12px 5% 0 5%;
             font-family: "Orbitron", sans-serif;
             color: $glow-yellow;
             text-align: center;
+            font-size: 1.2em;
         }
         .timeline-wrapper{
             .timeline{
@@ -85,7 +86,7 @@
                     gap: 6px;
                     h3{
                         margin: 0;
-                        font-size: 0.9em;
+                        font-size: 0.8em;
                         color: $text-main;
                     }
                     .color{
@@ -107,8 +108,12 @@
                     font-family: "Orbitron", sans-serif;
                     display: flex;
                     justify-content: space-between;
+                    align-items: center;
                     width: 100%;
                     color: $text-secondary;
+                    span{
+                        font-size: 0.9em;
+                    }
                 }
             }
         }

@@ -149,18 +149,19 @@ body .container .warning svg {
   margin: 0;
   margin-bottom: 12px;
   background: hsl(235, 62%, 33%);
-  padding: 12px 0;
+  padding: 0 0 12px 0;
 }
-.daysContainer .dayWork h2, .daysContainer .dayWork .timeline-wrapper, .daysContainer .dayWork .dayDetail, .daysContainer .dayWork .dayRecap {
+.daysContainer .dayWork .timeline-wrapper, .daysContainer .dayWork .dayDetail, .daysContainer .dayWork .dayRecap {
   max-width: 90%;
   width: 100%;
   margin: 0 auto;
 }
 .daysContainer .dayWork h2 {
-  margin: 0 auto;
+  padding: 12px 5% 0 5%;
   font-family: "Orbitron", sans-serif;
   color: hsl(46, 100%, 60%);
   text-align: center;
+  font-size: 1.2em;
 }
 .daysContainer .dayWork .timeline-wrapper .timeline {
   position: relative;
@@ -220,7 +221,7 @@ body .container .warning svg {
 }
 .daysContainer .dayWork .dayDetail .type .title h3 {
   margin: 0;
-  font-size: 0.9em;
+  font-size: 0.8em;
   color: hsl(0, 0%, 100%);
 }
 .daysContainer .dayWork .dayDetail .type .title .color {
@@ -241,8 +242,12 @@ body .container .warning svg {
   font-family: "Orbitron", sans-serif;
   display: flex;
   justify-content: space-between;
+  align-items: center;
   width: 100%;
   color: hsl(210, 30%, 85%);
+}
+.daysContainer .dayWork .dayDetail .type p span {
+  font-size: 0.9em;
 }
 .daysContainer .dayWork .dayRecap ul {
   list-style-type: none;
