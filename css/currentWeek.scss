@@ -15,13 +15,16 @@
         .dayWork{
             width: 100%;
             margin: 0;
-            background: $bg-panel;
+            background: $bg-secondary;
             padding: 0 0 12px 0;
             clip-path: polygon(5% 100%, 0 95%, 0 5%, 5% 0, 95% 0, 100% 5%, 100% 95%, 95% 100%);
-            .timeline-wrapper, .dayDetail, .dayRecap{
+            .dayDetail, .dayRecap{
                 max-width: 90%;
                 width: 100%;
                 margin: 0 auto;
+            }
+            h2, .startAndStop, .timeline-wrapper{
+                background: $bg-panel;
             }
             h2{
                 padding: 12px 5% 0 5%;
@@ -38,6 +41,8 @@
                 padding: 0 5% 12px 5%;
             }
             .timeline-wrapper{
+                padding: 8px 5%;
+                margin-bottom: 12px;
                 .timeline{
                     position: relative;
                     width: 100%;

@@ -153,14 +153,17 @@ body .container .warning svg {
 .daysContainer .shapeDayWork .dayWork {
   width: 100%;
   margin: 0;
-  background: hsl(235, 62%, 33%);
+  background: hsl(234, 72%, 22%);
   padding: 0 0 12px 0;
   clip-path: polygon(5% 100%, 0 95%, 0 5%, 5% 0, 95% 0, 100% 5%, 100% 95%, 95% 100%);
 }
-.daysContainer .shapeDayWork .dayWork .timeline-wrapper, .daysContainer .shapeDayWork .dayWork .dayDetail, .daysContainer .shapeDayWork .dayWork .dayRecap {
+.daysContainer .shapeDayWork .dayWork .dayDetail, .daysContainer .shapeDayWork .dayWork .dayRecap {
   max-width: 90%;
   width: 100%;
   margin: 0 auto;
+}
+.daysContainer .shapeDayWork .dayWork h2, .daysContainer .shapeDayWork .dayWork .startAndStop, .daysContainer .shapeDayWork .dayWork .timeline-wrapper {
+  background: hsl(235, 62%, 33%);
 }
 .daysContainer .shapeDayWork .dayWork h2 {
   padding: 12px 5% 0 5%;
@@ -175,6 +178,10 @@ body .container .warning svg {
   color: hsl(210, 30%, 85%);
   margin: 0;
   padding: 0 5% 12px 5%;
+}
+.daysContainer .shapeDayWork .dayWork .timeline-wrapper {
+  padding: 8px 5%;
+  margin-bottom: 12px;
 }
 .daysContainer .shapeDayWork .dayWork .timeline-wrapper .timeline {
   position: relative;
