@@ -157,7 +157,7 @@ body .container .warning svg {
   margin: 0 auto;
 }
 .daysContainer .dayWork h2 {
-  margin: 0;
+  margin: 0 auto;
   font-family: "Orbitron", sans-serif;
   color: hsl(46, 100%, 60%);
   text-align: center;

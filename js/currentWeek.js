@@ -55,10 +55,15 @@ const generateHours = () => {
 };
 const render = () => {
   state.forEach((st) => {
+    console.log(st);
+
+    // le state a la date du 21/03/2026 renvoi semaine 13 et le state du lendemain du 22/03/2026 renvoi semaine 12. Il s'agit du samedi et du dimanche
+    console.log(currentWeek, st.week);
+
     if (currentWeek === st.week) {
-      daysContainer.innerHTML = `
+      daysContainer.innerHTML += `
         <article class="dayWork">
-          <h2>${displayDate()}</h2>
+          <h2>${st.date} : ${st.start.replace(":", "h").slice(0, 5)} - ${st.finish.replace(":", "h").slice(0, 5)}</h2>
           <div class="timeline-wrapper">
             <div class="timeline">
               ${st.datas
