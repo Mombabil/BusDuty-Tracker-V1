@@ -18,6 +18,22 @@
             background: $bg-secondary;
             padding: 0 0 12px 0;
             clip-path: polygon(5% 100%, 0 95%, 0 5%, 5% 0, 95% 0, 100% 5%, 100% 95%, 95% 100%);
+            position: relative;
+            .editSection{
+                position: absolute;
+                right: 20px;
+                top: 20px;
+                button{
+                    background: none;
+                    border: none;
+                    cursor: pointer;
+                    svg{
+                        width: 30px;
+                        height: 30px;
+                        fill: $text-secondary;
+                    }
+                }
+            }
             .dayDetail, .dayRecap{
                 max-width: 90%;
                 width: 100%;
@@ -132,26 +148,11 @@
                             font-size: 0.9em;
                         }
                     }
-                    .timeAndEdit{
+                    .time{
                         justify-content: flex-end;
                         span{
                             padding-right: 12px;
                         }
-                        button{
-                            background: none;
-                            border: none;
-                            cursor: pointer;
-                            padding: 0 2px;
-                            svg{
-                                height: 20px;
-                                width: 20px;
-                                fill: $text-secondary;
-                            }
-                        }
-                    }
-                    input{
-                        max-width: 90px;
-                        margin-right: 12px;
                     }
                 }
             }
