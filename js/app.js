@@ -84,6 +84,8 @@ const calcDuration = (currentStatut, type, detail) => {
     // on crée une nouvelle activité selon le bouton sur lequel on a cliqué
     activeDay.currentStatut = currentStatut;
     activeDay.datas.push({
+      id: Date.now(),
+      isEditing: false,
       type: type,
       start: getTime(),
       end: "",
@@ -108,6 +110,8 @@ const startOfDay = () => {
     amplitude: "",
     datas: [
       {
+        id: Date.now(),
+        isEditing: false,
         type: "TRA",
         start: getTime(),
         end: "",
@@ -429,30 +433,34 @@ const calcTte = (tra, pau) => {
   const work = tra.split(":").map(Number);
   const waiting = pau.split(":").map(Number);
 
-  const hour = work[0] + waiting[0];
-  const minutes = work[1] + waiting[1];
+  let h = work[0] + waiting[0];
+  let m = work[1] + waiting[1];
 
-  if (minutes >= 60) {
-    hour += 1;
-    minutes = minutes % 60;
+  console.log(h, m);
+
+  if (m >= 60) {
+    h += 1;
+    m = m % 60;
   }
 
-  return `${pad(hour)}:${pad(minutes)}`;
+  return `${pad(h)}:${pad(m)}`;
 };
 
 const calcAmp = (tra, pau) => {
   const work = tra.split(":").map(Number);
   const waiting = pau.split(":").map(Number);
 
-  const hour = work[0] + waiting[0];
-  const minutes = work[1] + waiting[1];
+  let h = work[0] + waiting[0];
+  let m = work[1] + waiting[1];
 
-  if (minutes >= 60) {
-    hour += 1;
-    minutes = minutes % 60;
+  console.log(h, m);
+
+  if (m >= 60) {
+    h += 1;
+    m = m % 60;
   }
 
-  return `${pad(hour)}:${pad(minutes)}`;
+  return `${pad(h)}:${pad(m)}`;
 };
 
 // EVENTS

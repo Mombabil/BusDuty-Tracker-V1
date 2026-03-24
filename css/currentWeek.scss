@@ -132,6 +132,27 @@
                             font-size: 0.9em;
                         }
                     }
+                    .timeAndEdit{
+                        justify-content: flex-end;
+                        span{
+                            padding-right: 12px;
+                        }
+                        button{
+                            background: none;
+                            border: none;
+                            cursor: pointer;
+                            padding: 0 2px;
+                            svg{
+                                height: 20px;
+                                width: 20px;
+                                fill: $text-secondary;
+                            }
+                        }
+                    }
+                    input{
+                        max-width: 90px;
+                        margin-right: 12px;
+                    }
                 }
             }
             .dayRecap{
