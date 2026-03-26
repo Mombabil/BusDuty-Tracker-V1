@@ -15,6 +15,7 @@ const daysContainer = document.querySelector(".daysContainer");
 
 const today = new Date();
 const currentWeek = getCurrentWeek(today);
+console.log(currentWeek);
 
 // initialisation du state
 let state = JSON.parse(localStorage.getItem("busTrackerState")) || [];
@@ -74,7 +75,8 @@ function getDayNameFromDate(dateStr) {
 const render = () => {
   let html = "";
   state.forEach((st) => {
-    if (currentWeek === st.week) {
+    // ne doit pas afficher la journée en cours tant qu'elle n'est pas terminée
+    if ((currentWeek === st.week) & st.isFinished) {
       html += `
       <div class="shapeDayWork">
         <article class="dayWork">
@@ -166,9 +168,6 @@ const render = () => {
   });
   daysContainer.innerHTML = html;
 };
-
-const editSection = document.querySelector(".editSection");
-console.log(editSection);
 
 // INITIALISE APP
 render();
